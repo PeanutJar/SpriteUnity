@@ -65,11 +65,8 @@ public class RocketScript : MonoBehaviour
                 yspeed = -6;
         }
 
+        //effective position translation ranges from 0-6 units per second in a given direction
         velocity = new Vector3(xspeed, yspeed, 0);
-        print(xspeed + "X");
-        print(yspeed + "Y");
-
-        //controller.enabled = true;
         //adding Time.deltaTime so it updates in accordance to seconds rather than per frame
         controller.Move(velocity * Time.deltaTime);  //move the controller	
     }
