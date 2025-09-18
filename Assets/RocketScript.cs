@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class RocketScript : MonoBehaviour
 {
@@ -8,16 +9,14 @@ public class RocketScript : MonoBehaviour
     CharacterController controller;
     float xspeed;
     float yspeed;
-    public float accelerationx;
-    public float accelerationy;
+    public float accelerationx = 0.1f;
+    public float accelerationy = 0.1f;
     Vector3 velocity = Vector3.zero;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         xspeed = 0;
         yspeed = 0;
-        accelerationx = 0;
-        accelerationy = 0;
         controller = GetComponent<CharacterController>();
     }
 
@@ -30,26 +29,24 @@ public class RocketScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             controller.enabled = true;
         }
-
         float val = Input.GetAxis("Horizontal");
         float val2 = Input.GetAxis("Vertical");
+
         if (val == 0)
         {
             xspeed = 0;
         }
         else if (val > 0)
         {
-            Console.WriteLine("fnkee");
-            //adding Time.deltaTime so it updates in accordance to seconds rather than per frame
-            xspeed += accelerationx * Time.deltaTime;
+            xspeed += accelerationx;
             if (xspeed >= 6)
                 xspeed = 6;
         }
         else if (val < 0)
         {
-            yspeed -= accelerationy * Time.deltaTime;
-            if (yspeed <= -6)
-                yspeed = -6;
+            xspeed -= accelerationx;
+            if (xspeed <= -6)
+                xspeed = -6;
         }
         if (val2 == 0)
         {
@@ -57,21 +54,23 @@ public class RocketScript : MonoBehaviour
         }
         else if (val2 > 0)
         {
-            //adding Time.deltaTime so it updates in accordance to seconds rather than per frame
-            yspeed += accelerationy * Time.deltaTime;
+            yspeed += accelerationy;
             if (yspeed >= 6)
                 yspeed = 6;
         }
         else if (val2 < 0)
         {
-            yspeed -= accelerationy * Time.deltaTime;
+            yspeed -= accelerationy;
             if (yspeed <= -6)
                 yspeed = -6;
         }
 
         velocity = new Vector3(xspeed, yspeed, 0);
+        print(xspeed + "X");
+        print(yspeed + "Y");
 
-        controller.enabled = true;
+        //controller.enabled = true;
+        //adding Time.deltaTime so it updates in accordance to seconds rather than per frame
         controller.Move(velocity * Time.deltaTime);  //move the controller	
     }
 }

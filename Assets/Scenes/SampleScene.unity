@@ -372,8 +372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RocketScript
   spriterenderer: {fileID: 1516690649}
-  accelerationx: 0
-  accelerationy: 0
+  accelerationx: 0.1
+  accelerationy: 0.1
 --- !u!212 &1516690649
 SpriteRenderer:
   m_ObjectHideFlags: 0
