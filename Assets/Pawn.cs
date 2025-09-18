@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class Pawn : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+//this class is meant handle switching which pawn the player will control
+//this will include generic pawn controls (every pawn should be able do [this])
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public abstract class Pawn : MonoBehaviour
+{
+    public abstract void Move(Vector3 movevector);
 }
