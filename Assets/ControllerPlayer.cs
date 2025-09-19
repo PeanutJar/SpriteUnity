@@ -16,6 +16,7 @@ public class ControllerPlayer : Controller
     // Update is called once per frame
     void Update()
     {
+        //for example, if our object were rotated to the right (in a 2d setting), then its directional "up" within its local space would actually translate to a directional "right" within the worldspace
         Vector3 forward = pawnobject.transform.TransformDirection(Vector3.up);   // forward vector (really it is the up vector) relative to the pawn object along the y plane (in the worldspace) -> forward/back
         forward.z = 0;                                                                  // "forward/back" (movement on the z axis) is set to 0
         forward = forward.normalized;                                                   // set forward between 0-1	
