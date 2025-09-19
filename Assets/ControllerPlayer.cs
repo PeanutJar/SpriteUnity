@@ -16,7 +16,7 @@ public class ControllerPlayer : Controller
     // Update is called once per frame
     void Update()
     {
-        Vector3 forward = pawnobject.transform.TransformDirection(Vector3.up);   // forward vector (really it is the up vector) relative to the camera along the y plane (in the worldspace) -> forward/back
+        Vector3 forward = pawnobject.transform.TransformDirection(Vector3.up);   // forward vector (really it is the up vector) relative to the pawn object along the y plane (in the worldspace) -> forward/back
         forward.z = 0;                                                                  // "forward/back" (movement on the z axis) is set to 0
         forward = forward.normalized;                                                   // set forward between 0-1	
 
