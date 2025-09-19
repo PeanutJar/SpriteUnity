@@ -7,7 +7,7 @@ public class PawnSpaceShip : Pawn
     public float speed = 8f;
     private float speedreg;
     public float speedmultiplier = 1.5f;
-    public float rotatespeed = 2f;
+    public float rotatespeed = 360f;
     private bool isboost;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,7 +42,7 @@ public class PawnSpaceShip : Pawn
 
     public override void Rotate(float angle)
     {
-        transform.Rotate(new Vector3(0,0,angle * rotatespeed));
+        transform.Rotate(new Vector3(0,0,angle * rotatespeed) * Time.deltaTime);
     }
 
     public void ToggleBoost()

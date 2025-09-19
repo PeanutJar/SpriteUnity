@@ -630,7 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PawnSpaceShip
   speed: 8
   speedmultiplier: 1.5
-  rotatespeed: 2
+  rotatespeed: 360
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
