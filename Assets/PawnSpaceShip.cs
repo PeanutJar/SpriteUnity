@@ -17,6 +17,8 @@ public class PawnSpaceShip : Pawn
         collider.isTrigger = true;
         isboost = false;
         speedreg = speed;
+        this.gameObject.tag = "Player";
+        health = GetComponent<Health>();
     }
 
     public override void Move(Vector3 movevector)

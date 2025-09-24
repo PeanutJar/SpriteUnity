@@ -452,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a411f95c8beaa4db87334f7145b968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeteorScript
+  isinstantdeath: 0
 --- !u!212 &723499078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -499,7 +500,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -925345978958199149, guid: de3fa431afd7b16429705240e475e782, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -536,6 +537,8 @@ GameObject:
   - component: {fileID: 1516690650}
   - component: {fileID: 1516690649}
   - component: {fileID: 1516690653}
+  - component: {fileID: 1516690655}
+  - component: {fileID: 1516690654}
   m_Layer: 0
   m_Name: RocketPawn
   m_TagString: Untagged
@@ -628,9 +631,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edba9761f6bccd44bcca58db45dfa24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PawnSpaceShip
+  health: {fileID: 0}
   speed: 8
   speedmultiplier: 1.5
   rotatespeed: 360
+--- !u!114 &1516690654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516690647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e27aa7475412b44b3db9a67a359e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathDestroy
+--- !u!114 &1516690655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516690647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5f5d836963b3a468d014699d2a7af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxhealth: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

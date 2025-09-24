@@ -16,6 +16,10 @@ public class ControllerPlayer : Controller
     // Update is called once per frame
     void Update()
     {
+        if( pawnobject == null ) //doing this just so I don't have to deal with error messages for now
+        {
+            return;
+        }
         //for example, if our object were rotated to the right (in a 2d setting), then its directional "up" within its local space would actually translate to a directional "right" within the worldspace
         //it's like trying to get "what is the equivilant of [X] direction in the real worldspace when compared to [X] object's perspective direction (its direction relative its own localspace)
         Vector3 forward = pawnobject.transform.TransformDirection(Vector3.up);   // forward vector (really it is the up vector) relative to the pawn object along the y plane (in the worldspace) -> forward/back
