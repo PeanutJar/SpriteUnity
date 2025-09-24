@@ -39,7 +39,12 @@ public class PawnSpaceShip : Pawn
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.z != 0)
+        {
+            controller.enabled = false;
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            controller.enabled = true;
+        }
     }
 
     public override void Rotate(float angle)
