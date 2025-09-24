@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
             Die();
         }
     }
+
     public void Heal(int _heal)
     {
         if ((health + _heal) < maxhealth)
