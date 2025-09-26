@@ -11,6 +11,7 @@ public class ProjectileMoveStraight : ProjectileMover
     // Update is called once per frame
     void Update()
     {
-        
+        Projectile proj = gameObject.GetComponent<Projectile>();
+        transform.position = transform.position + (transform.up * proj.GetSpeed() * Time.deltaTime);
     }
 }

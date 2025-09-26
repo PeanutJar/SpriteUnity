@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class DamageOnCollsion : MonoBehaviour
@@ -35,9 +36,7 @@ public class DamageOnCollsion : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Health>() != null)
                 {
-                    //int damage = gameObject.GetComponent<MeteorScript>().GetDamage();
-                    //bool isdie = gameObject.GetComponent<MeteorScript>().GetInstDeath();
-                    //other.gameObject.GetComponent<Health>().TakeDamage(damage, isdie);
+                    other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, false);
                 }
             }
         }

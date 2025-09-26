@@ -414,6 +414,8 @@ GameObject:
   - component: {fileID: 723499076}
   - component: {fileID: 723499080}
   - component: {fileID: 723499081}
+  - component: {fileID: 723499082}
+  - component: {fileID: 723499083}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Untagged
@@ -455,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeteorScript
   isinstantdeath: 0
+  healthcomponent: {fileID: 0}
 --- !u!212 &723499078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -554,6 +557,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollsion
   impactdamage: 1
+--- !u!114 &723499082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723499075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e27aa7475412b44b3db9a67a359e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathDestroy
+--- !u!54 &723499083
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723499075}
+  serializedVersion: 5
+  m_Mass: 0.0000001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1370243305
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +611,8 @@ GameObject:
   - component: {fileID: 1370243310}
   - component: {fileID: 1370243312}
   - component: {fileID: 1370243313}
+  - component: {fileID: 1370243314}
+  - component: {fileID: 1370243315}
   m_Layer: 0
   m_Name: bullet_0
   m_TagString: Untagged
@@ -589,6 +633,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletScript
   movercomponent: {fileID: 0}
+  healthcomponent: {fileID: 0}
+  speed: 10
+  speedmultiplier: 1
 --- !u!212 &1370243308
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -721,6 +768,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab83f8f9949f04648bb1328182b1e69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileMoveStraight
+--- !u!54 &1370243314
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370243305}
+  serializedVersion: 5
+  m_Mass: 0.0000001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1370243315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370243305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e27aa7475412b44b3db9a67a359e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathDestroy
 --- !u!1 &1516690647
 GameObject:
   m_ObjectHideFlags: 0
