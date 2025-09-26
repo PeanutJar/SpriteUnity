@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 723499078}
   - component: {fileID: 723499077}
   - component: {fileID: 723499076}
+  - component: {fileID: 723499080}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Untagged
@@ -453,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeteorScript
   isinstantdeath: 0
+  impactdamage: 1
 --- !u!212 &723499078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -526,6 +528,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723499080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723499075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5f5d836963b3a468d014699d2a7af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxhealth: 1
 --- !u!1 &1516690647
 GameObject:
   m_ObjectHideFlags: 0

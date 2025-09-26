@@ -3,10 +3,11 @@ using UnityEngine;
 public class MeteorScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public bool isinstantdeath = false;
+    [SerializeField] private bool isinstantdeath = false;
+    [SerializeField] private int impactdamage = 1;
     void Start()
     {
-
+        this.gameObject.tag = "Meteor";
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class MeteorScript : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Health>() != null) 
             {
-                other.gameObject.GetComponent<Health>().TakeDamage(1, isinstantdeath);
+                other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, isinstantdeath);
             }
 
         }

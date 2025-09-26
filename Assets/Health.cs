@@ -3,7 +3,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     private int health;
-    [SerializeField] private int maxhealth = 10;
+    [SerializeField] private int maxhealth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
     {
         health -= _damage;
         print("Health:" + health);
-        if(health < 0 || _instdeath)
+        if(health <= 0 || _instdeath)
         {
             Die();
         }
