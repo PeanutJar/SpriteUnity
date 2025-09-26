@@ -41,18 +41,6 @@ public class DamageOnCollsion : MonoBehaviour
                 }
             }
         }
-        /*
-        if (other.gameObject.GetComponent<SpriteRenderer>() != null) //if object has the sprite renderer component
-        {
-            //set triggered sprite's color to red if already white and white if not already white
-            other.gameObject.GetComponent<SpriteRenderer>().color = other.gameObject.GetComponent<SpriteRenderer>().color == Color.white ? Color.red : Color.white;
-        }
-        */
-
-
-
-
-
 
     }
 }

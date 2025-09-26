@@ -1,13 +1,11 @@
 using UnityEngine;
 
-public class BulletScript : Projectile
+public class ProjectileMoveStraight : ProjectileMover
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.gameObject.tag = "Projectile";
-        movercomponent = GetComponent<ProjectileMover>();
-
+        
     }
 
     // Update is called once per frame
