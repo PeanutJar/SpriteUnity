@@ -455,7 +455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeteorScript
   isinstantdeath: 0
-  impactdamage: 1
 --- !u!212 &723499078
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -554,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1f58e5d1e310241ae9d57c2b502979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollsion
+  impactdamage: 1
 --- !u!1 &1370243305
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1f58e5d1e310241ae9d57c2b502979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollsion
+  impactdamage: 1
 --- !u!1 &1516690647
 GameObject:
   m_ObjectHideFlags: 0

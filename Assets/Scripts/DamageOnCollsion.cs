@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DamageOnCollsion : MonoBehaviour
 {
+    [SerializeField] private int impactdamage = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,9 +23,8 @@ public class DamageOnCollsion : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Health>() != null)
                 {
-                    int damage = gameObject.GetComponent<MeteorScript>().GetDamage();
                     bool isdie = gameObject.GetComponent<MeteorScript>().GetInstDeath();
-                    other.gameObject.GetComponent<Health>().TakeDamage(damage, isdie);
+                    other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, isdie);
                 }
 
             }
