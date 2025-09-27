@@ -24,7 +24,7 @@ public class BulletScript : Projectile
     void Update()
     {
         if(transform.position.y > (cam.transform.position.y + halfHeight) || transform.position.y < (cam.transform.position.y - halfHeight) || 
-            transform.position.x > (cam.transform.position.x + halfWidth) || transform.position.x < (cam.transform.position.x - halfWidth))
+            transform.position.x > (cam.transform.position.x + halfWidth) || transform.position.x < (cam.transform.position.x - halfWidth)) //can also incorporated a timer (for depending on how long projectile  has been off screen)
         {
             gameObject.GetComponent<DeathDestroy>().Die();
         }
