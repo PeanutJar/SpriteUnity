@@ -4,6 +4,7 @@ using System;
 
 public class GneralScript : MonoBehaviour
 {
+    public static GneralScript instance;
 
     [Header("Players")]
     public List<ControllerPlayer> players;
@@ -15,6 +16,19 @@ public class GneralScript : MonoBehaviour
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public void Awake()
+    {
+        //does a gamemanager already exidst??? check
+        if(instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
     void Start()
     {
         players = new List<ControllerPlayer>();
@@ -28,6 +42,13 @@ public class GneralScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
+
+        /*
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            GneralScript.instance.SpawnPlayer();
+        }
+        */
     }
 
     public void SpawnPlayer()
