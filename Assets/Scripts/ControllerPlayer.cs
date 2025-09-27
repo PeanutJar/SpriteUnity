@@ -90,5 +90,10 @@ public class ControllerPlayer : Controller
         if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {
             pawnobject.GetComponentInChildren<PawnSpaceShip>().ToggleBoost();
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            pawnobject.GetComponent<Shooter>().Shoot();
+        }
     }
 }

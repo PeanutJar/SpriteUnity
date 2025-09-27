@@ -16,7 +16,7 @@ public class BulletScript : Projectile
     // Update is called once per frame
     void Update()
     {
-        
+        print(transform.position);
     }
 
     public override float GetSpeed()
