@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using TMPro;
 
 public class GneralScript : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GneralScript : MonoBehaviour
     public GameObject playerpawnprefab;
     public GameObject playercontrollerprefab;
     public GameObject meteorprefab;
+
+    private float timecount;
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +37,7 @@ public class GneralScript : MonoBehaviour
         players = new List<ControllerPlayer>();
         SpawnPlayerController();
         SpawnPlayer();
+        timecount = 0;
     }
 
     // Update is called once per frame
@@ -43,12 +47,13 @@ public class GneralScript : MonoBehaviour
             Application.Quit();
         }
 
-        /*
-        if(Input.GetKeyDown(KeyCode.P))
+        timecount += Time.deltaTime;
+
+        if(timecount > 3 )
         {
-            GneralScript.instance.SpawnPlayer();
+            timecount = 0;
+            SpawnObstacle();
         }
-        */
     }
 
     public void SpawnPlayer()
@@ -82,6 +87,36 @@ public class GneralScript : MonoBehaviour
         //else
         {
             //players[0] = newcontroller;
+        }
+    }
+
+    void SpawnObstacle()
+    {
+        if (players[0].pawnobject != null) //if pawn object no longer exists
+        {
+            Vector3 pos = players[0].pawnobject.gameObject.transform.position;
+            System.Random random = new System.Random();
+            int r1 = random.Next(1, 5); //1-4
+            if (r1 == 1)
+            {
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, 6, 0), Quaternion.identity) as GameObject; //spawns top left from character
+                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+            }
+            else if (r1 == 2)
+            {
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, -6, 0), Quaternion.identity) as GameObject; //spawns bottom left from character
+                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+            }
+            else if (r1 == 3)
+            {
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, 6, 0), Quaternion.identity) as GameObject; //spawns top right from character
+                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+            }
+            else if (r1 == 4)
+            {
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, -6, 0), Quaternion.identity) as GameObject; //spawns bottom right from character
+                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+            }
         }
     }
 }

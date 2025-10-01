@@ -57,4 +57,5 @@ public class PawnSpaceShip : Pawn
         isboost = !isboost;
         print(isboost ? "Boost Activated" : "Boost Deactivated");
     }
+
 }
