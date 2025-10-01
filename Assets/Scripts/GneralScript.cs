@@ -16,6 +16,7 @@ public class GneralScript : MonoBehaviour
     public GameObject meteorprefab;
 
     private float timecount;
+    public int score;
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
