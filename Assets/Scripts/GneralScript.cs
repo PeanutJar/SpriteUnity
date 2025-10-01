@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class GneralScript : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GneralScript : MonoBehaviour
 
     private float timecount;
     public int score;
+    public TextMeshProUGUI scoretext;
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +41,7 @@ public class GneralScript : MonoBehaviour
         SpawnPlayerController();
         SpawnPlayer();
         timecount = 0;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -55,6 +58,7 @@ public class GneralScript : MonoBehaviour
             timecount = 0;
             SpawnObstacle();
         }
+        scoretext.text = "Score: " + score;
     }
 
     public void SpawnPlayer()

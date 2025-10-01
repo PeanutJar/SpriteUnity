@@ -378,6 +378,7 @@ MonoBehaviour:
   playercontrollerprefab: {fileID: 2187741881811673663, guid: fc6a965d7fd56444795ff7dc90897c54, type: 3}
   meteorprefab: {fileID: 1607087503500720220, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
   score: 0
+  scoretext: {fileID: 1114203957}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

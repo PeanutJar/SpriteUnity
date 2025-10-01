@@ -37,6 +37,7 @@ public class DamageOnCollsion : MonoBehaviour
                 if (other.gameObject.GetComponent<Health>() != null)
                 {
                     other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, false);
+                    Camera.main.GetComponent<GneralScript>().score += 1;
                 }
             }
         }
