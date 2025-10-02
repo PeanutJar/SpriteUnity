@@ -23,7 +23,7 @@ public class MeteorScript : MonoBehaviour
     public void istanctiate(Vector3 pos)
     {
         initialposition = pos;
-        moveDirection = (initialposition - (Vector3)transform.position).normalized;
+        moveDirection = (initialposition - (Vector3)transform.position).normalized; //point in direction of player position when istanciated
     }
 
     // Update is called once per frame
