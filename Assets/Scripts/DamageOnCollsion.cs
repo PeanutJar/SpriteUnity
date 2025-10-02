@@ -36,8 +36,8 @@ public class DamageOnCollsion : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Health>() != null)
                 {
+                    other.gameObject.GetComponent<MeteorScript>().changehealthbar(impactdamage);
                     other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, false);
-                    Camera.main.GetComponent<GneralScript>().score += other.gameObject.GetComponent<MeteorScript>().scoreincreaser;
                 }
             }
         }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -50,5 +51,14 @@ public class Health : MonoBehaviour
         {
             Debug.Log("This gameobject does not have a death component");
         }
+    }
+
+    public int GetMaxHealth()
+    {
+        return (maxhealth);
+    }
+    public int GetHealth()
+    {
+        return (health);
     }
 }

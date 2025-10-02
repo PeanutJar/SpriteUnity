@@ -840,6 +840,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meteor
       objectReference: {fileID: 0}
+    - target: {fileID: 1643703547340104775, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682089726119456027, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373520270051039289, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+      propertyPath: healthbar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373520270051039289, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+      propertyPath: maxhealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856357346032211877, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+      propertyPath: impactdamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3885916144245770910, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.07

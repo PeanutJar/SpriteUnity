@@ -16,6 +16,10 @@ public class DeathDestroy : Death
 
     public override void Die()
     {
+        if(gameObject.tag == "Obstacle")
+        {
+            Camera.main.GetComponent<GneralScript>().score += gameObject.GetComponent<MeteorScript>().scoreincreaser;
+        }
         Destroy(gameObject);
     }
 }

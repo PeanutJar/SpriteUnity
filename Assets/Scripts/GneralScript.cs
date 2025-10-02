@@ -53,7 +53,7 @@ public class GneralScript : MonoBehaviour
 
         timecount += Time.deltaTime;
 
-        if(timecount > 3 )
+        if(timecount > 2 )
         {
             timecount = 0;
             SpawnObstacle();
