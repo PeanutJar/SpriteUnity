@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeteorScript
   isinstantdeath: 0
   healthcomponent: {fileID: 0}
+  scoreincreaser: 1
 --- !u!65 &6815688607642764992
 BoxCollider:
   m_ObjectHideFlags: 0

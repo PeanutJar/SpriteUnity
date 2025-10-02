@@ -10,6 +10,7 @@ public class MeteorScript : MonoBehaviour
     public Health healthcomponent;
     private Vector3 moveDirection;
     private Vector3 initialposition;
+    public int scoreincreaser;
     void Start()
     {
         this.gameObject.tag = "Obstacle";
