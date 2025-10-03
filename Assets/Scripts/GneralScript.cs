@@ -104,6 +104,7 @@ public class GneralScript : MonoBehaviour
             if (newpawn != null)
             {
                 players[0].pawnobject = newpawn;
+                players[0].gameObject.GetComponent<ControllerPlayer>().IstantiateHealthBar();
             }
         }
         

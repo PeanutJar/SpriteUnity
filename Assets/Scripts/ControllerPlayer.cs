@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UI;
 
 public class ControllerPlayer : Controller
 {
@@ -8,10 +9,15 @@ public class ControllerPlayer : Controller
     private Vector3 moveDirection = Vector3.up;
     public int randomteleportXmax = 9;
     public int randomteleportYmax = 4;
+    [SerializeField] private Image healthbar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
+    }
+    public void IstantiateHealthBar()
+    {
+        pawnobject.GetComponentInChildren<PawnSpaceShip>().IstantiateHealthBar(healthbar);
     }
 
     // Update is called once per frame

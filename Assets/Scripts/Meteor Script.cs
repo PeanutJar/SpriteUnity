@@ -55,6 +55,7 @@ public class MeteorScript : MonoBehaviour
         return (isinstantdeath);
     }
 
+    /*
     public void changehealthbar(int damage)
     {
 
@@ -66,6 +67,16 @@ public class MeteorScript : MonoBehaviour
         Vector3 newScale = new Vector3(defaulthealthbarscale.x * scalefactor, defaulthealthbarscale.y, defaulthealthbarscale.z);
         // Assign the new scale to the object's localScale
         healthbar.transform.localScale = newScale;
+    }
+    */
+    public Image gethealthbar()
+    {
+        return (healthbar);
+    }
+
+    public Vector3 returnHealthScale()
+    {
+        return (defaulthealthbarscale);
     }
 
 }

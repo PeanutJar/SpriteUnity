@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PawnSpaceShip : Pawn
 {
@@ -9,6 +10,8 @@ public class PawnSpaceShip : Pawn
     public float speedmultiplier = 1.5f;
     public float rotatespeed = 360f;
     private bool isboost;
+    private Image healthbar;
+    private Vector3 defaulthealthbarscale;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +22,13 @@ public class PawnSpaceShip : Pawn
         speedreg = speed;
         this.gameObject.tag = "Player";
         health = GetComponent<Health>();
+       
+    }
+
+    public void IstantiateHealthBar(Image _healthbar)
+    {
+        healthbar = _healthbar;
+        defaulthealthbarscale = healthbar.transform.localScale;
     }
 
     public override void Move(Vector3 movevector)
@@ -56,6 +66,16 @@ public class PawnSpaceShip : Pawn
     {
         isboost = !isboost;
         print(isboost ? "Boost Activated" : "Boost Deactivated");
+    }
+
+    public Image gethealthbar()
+    {
+        return (healthbar);
+    }
+
+    public Vector3 returnHealthScale()
+    {
+        return (defaulthealthbarscale);
     }
 
 }

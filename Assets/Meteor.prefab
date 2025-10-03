@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3373520270051039289}
   - component: {fileID: 3856357346032211877}
   - component: {fileID: 3384295768944952293}
-  - component: {fileID: 2559053098555208726}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Untagged
@@ -159,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1f58e5d1e310241ae9d57c2b502979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollsion
-  impactdamage: 10
+  impactdamage: 2
 --- !u!114 &3384295768944952293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,33 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e27aa7475412b44b3db9a67a359e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeathDestroy
---- !u!54 &2559053098555208726
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607087503500720220}
-  serializedVersion: 5
-  m_Mass: 0.0000001
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2958308412454154805
 GameObject:
   m_ObjectHideFlags: 0

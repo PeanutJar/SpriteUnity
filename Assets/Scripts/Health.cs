@@ -20,8 +20,8 @@ public class Health : MonoBehaviour
     public void TakeDamage(int _damage, bool _instdeath)
     {
         health -= _damage;
-        print("Health:" + health);
-        if(health <= 0 || _instdeath)
+        print("Health:" + health + " " + gameObject.tag);
+        if (health <= 0 || _instdeath)
         {
             Die();
         }
@@ -51,6 +51,17 @@ public class Health : MonoBehaviour
         {
             Debug.Log("This gameobject does not have a death component");
         }
+    }
+
+    public void ChangeHealthBar(int _damage, Image _healthbar, Vector3 _defaulthealthbarscale)
+    {
+        //new scale = default scale * ([health-damage]/maxhealth)
+       
+        float scalefactor = ((float)(health - _damage) / maxhealth); //makes sure covert to float or double before devsion, else it will round down (due to c# calculation via integers)
+        Vector3 currentScale = transform.localScale;
+        Vector3 newScale = new Vector3(_defaulthealthbarscale.x * scalefactor, _defaulthealthbarscale.y, _defaulthealthbarscale.z);
+        // Assign the new scale to the object's localScale
+        _healthbar.transform.localScale = newScale;
     }
 
     public int GetMaxHealth()

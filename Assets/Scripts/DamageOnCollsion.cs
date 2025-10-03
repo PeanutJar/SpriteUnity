@@ -24,6 +24,10 @@ public class DamageOnCollsion : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Health>() != null)
                 {
+                    if (other.gameObject.tag == "Player")
+                    {
+                        other.gameObject.GetComponent<Health>().ChangeHealthBar(impactdamage, other.gameObject.GetComponent<PawnSpaceShip>().gethealthbar(), other.gameObject.GetComponent<PawnSpaceShip>().returnHealthScale());
+                    }
                     bool isdie = gameObject.GetComponent<MeteorScript>().GetInstDeath();
                     other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, isdie);
                 }
@@ -36,7 +40,8 @@ public class DamageOnCollsion : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Health>() != null)
                 {
-                    other.gameObject.GetComponent<MeteorScript>().changehealthbar(impactdamage);
+                    //other.gameObject.GetComponent<MeteorScript>().changehealthbar(impactdamage);
+                    other.gameObject.GetComponent<Health>().ChangeHealthBar(impactdamage, other.gameObject.GetComponent<MeteorScript>().gethealthbar(), other.gameObject.GetComponent<MeteorScript>().returnHealthScale());
                     other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, false);
                 }
             }

@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletScript
   movercomponent: {fileID: 0}
   healthcomponent: {fileID: 0}
+  lifetimeduration: 0
   speed: 10
   speedmultiplier: 1
 --- !u!114 &2448198829325651268
