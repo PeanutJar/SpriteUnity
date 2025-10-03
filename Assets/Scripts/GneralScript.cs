@@ -8,6 +8,11 @@ public class GneralScript : MonoBehaviour
 {
     public static GneralScript instance;
 
+    [Header("GameLayers")]
+    public GameObject gamelayer;
+    public GameObject menulayer;
+    [SerializeField] private Canvas gamecanvas;
+
     [Header("Players")]
     public List<ControllerPlayer> players;
 
@@ -33,11 +38,27 @@ public class GneralScript : MonoBehaviour
         else
         {
             instance = this;
+            gamelayer.SetActive(false);
+            menulayer.SetActive(true);
         }
     }
     void Start()
     {
-        players = new List<ControllerPlayer>();
+        players = new List<ControllerPlayer>(); //needs to stay, otherwise previously created game objects do not get deleted (since they are no longer associated with this new list)
+        //could fix by createing a function that removes all existing unwated game objects, but I don't feel like doing that -> Edit: I....uhhh. I went ahead and did that...
+        Reset();
+    }
+
+    public void Reset()
+    {
+        foreach(Transform gameobj in gamelayer.transform)
+        {
+            if(gameobj.gameObject != gamecanvas.gameObject)
+            {
+                Destroy(gameobj.gameObject);
+            }
+        }
+        
         SpawnPlayerController();
         SpawnPlayer();
         timecount = 0;
@@ -47,52 +68,67 @@ public class GneralScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)) {
-            Application.Quit();
-        }
-
-        timecount += Time.deltaTime;
-
-        if(timecount > 2 )
+        if (!menulayer.activeSelf && gamelayer.activeSelf) //game only runs if in "game mode"
         {
-            timecount = 0;
-            SpawnObstacle();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                //gamelayer.SetActive(!gamelayer.activeSelf);
+                //menulayer.SetActive(!menulayer.activeSelf);
+                gamelayer.SetActive(false);
+                menulayer.SetActive(true);
+            }
+
+            timecount += Time.deltaTime;
+
+            if (timecount > 2)
+            {
+                timecount = 0;
+                SpawnObstacle();
+            }
+            scoretext.text = "Score: " + score;
         }
-        scoretext.text = "Score: " + score;
     }
 
     public void SpawnPlayer()
     {
         if (players[0].pawnobject != null)
         {
+            //print("meep2");
             Destroy(players[0].pawnobject.gameObject);
         }
-        else
+        
+        GameObject _pawn = Instantiate(playerpawnprefab, new Vector3(0,0,0), Quaternion.identity, gamelayer.transform) as GameObject;
+        if (_pawn != null)
         {
-            GameObject _pawn = Instantiate(playerpawnprefab, new Vector3(0,0,0), Quaternion.identity) as GameObject;
-            if (_pawn != null)
+            Pawn newpawn = _pawn.GetComponent<Pawn>();
+            if (newpawn != null)
             {
-                Pawn newpawn = _pawn.GetComponent<Pawn>();
-                if (newpawn != null)
-                {
-                    players[0].pawnobject = newpawn;
-                }
+                players[0].pawnobject = newpawn;
             }
         }
+        
     }
 
     public void SpawnPlayerController()
     {
-        GameObject _controller = Instantiate(playercontrollerprefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        ControllerPlayer newcontroller = _controller.GetComponent<ControllerPlayer>();
-        //if (players.Count !>= 1)
+        if (players.Count > 0) //if list is not empty
         {
+            if (players[0].gameObject != null) //if there is already a controller
+            {
+                //print("meep");
+                Destroy(players[0].gameObject);
+                GameObject _controller = Instantiate(playercontrollerprefab, new Vector3(0, 0, 0), Quaternion.identity, gamelayer.transform) as GameObject; //instantiated controller and as a child of gamelayer
+                ControllerPlayer newcontroller = _controller.GetComponent<ControllerPlayer>();
+                players[0] = newcontroller;
+            }
+        }
+        else
+        {
+            GameObject _controller = Instantiate(playercontrollerprefab, new Vector3(0, 0, 0), Quaternion.identity, gamelayer.transform) as GameObject; //instantiated controller and as a child of gamelayer
+            ControllerPlayer newcontroller = _controller.GetComponent<ControllerPlayer>();
             players.Add(newcontroller);
         }
-        //else
-        {
-            //players[0] = newcontroller;
-        }
+
     }
 
     void SpawnObstacle()
@@ -104,22 +140,22 @@ public class GneralScript : MonoBehaviour
             int r1 = random.Next(1, 5); //1-4
             if (r1 == 1)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, 6, 0), Quaternion.identity) as GameObject; //spawns top left from character
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, 6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top left from character
                 obstacle.GetComponent<MeteorScript>().istanctiate(pos);
             }
             else if (r1 == 2)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, -6, 0), Quaternion.identity) as GameObject; //spawns bottom left from character
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, -6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom left from character
                 obstacle.GetComponent<MeteorScript>().istanctiate(pos);
             }
             else if (r1 == 3)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, 6, 0), Quaternion.identity) as GameObject; //spawns top right from character
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, 6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top right from character
                 obstacle.GetComponent<MeteorScript>().istanctiate(pos);
             }
             else if (r1 == 4)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, -6, 0), Quaternion.identity) as GameObject; //spawns bottom right from character
+                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, -6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom right from character
                 obstacle.GetComponent<MeteorScript>().istanctiate(pos);
             }
         }
