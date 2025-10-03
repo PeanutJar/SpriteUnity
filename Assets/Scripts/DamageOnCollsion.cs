@@ -46,6 +46,16 @@ public class DamageOnCollsion : MonoBehaviour
                 }
             }
         }
+        else if(gameObject.tag == "Player")
+        {
+            if (other.gameObject != null && other.gameObject.tag == "Obstacle")
+            {
+                if (other.gameObject.GetComponent<DeathDestroy>() != null)
+                {
+                    other.gameObject.GetComponent<DeathDestroy>().Die();
+                }
+            }
+        }
 
     }
 }

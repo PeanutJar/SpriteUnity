@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6789381768737460862}
   - component: {fileID: 3701767008256531847}
   - component: {fileID: 3103741514011364488}
+  - component: {fileID: 5644627553183567708}
   m_Layer: 0
   m_Name: RocketPawn
   m_TagString: Untagged
@@ -148,3 +149,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShooterBullet
   projectile: {fileID: 7625566780900405863, guid: a9d9f2d645df35241b8de19cfabe88b4, type: 3}
+--- !u!114 &5644627553183567708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481298048236743760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1f58e5d1e310241ae9d57c2b502979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageOnCollsion
+  impactdamage: 10
