@@ -1,8 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
+using System;
+using System.Reflection;
 
 public class MeteorScript : MonoBehaviour
 {
@@ -14,6 +17,9 @@ public class MeteorScript : MonoBehaviour
     public int scoreincreaser;
     [SerializeField] private Image healthbar;
     private Vector3 defaulthealthbarscale;
+
+    [Header("AudioClips")]
+    public AudioClip explosionsound;
     void Start()
     {
         this.gameObject.tag = "Obstacle";
@@ -77,6 +83,32 @@ public class MeteorScript : MonoBehaviour
     public Vector3 returnHealthScale()
     {
         return (defaulthealthbarscale);
+    }
+
+    //if passed string matches the according AudioClip variable name, then passes that variable's value (passing via variabel name instead of actual audio file name, cuz I intend for the audio clips to still
+    //be viewable through the inspector, so people can just pass the given/assigned/desired variable name instead of the actual file name. I think this may be better for if you may want to switch what sounds
+    //you use for the same mechanics (ex: chanign explosion sounds).
+    public AudioClip getAudio(string audiovariablename) //uses "Reflection" technique
+    {
+        AudioClip localaudio;
+        Type targettype = typeof(AudioClip);
+        FieldInfo[] fields = targettype.GetFields(BindingFlags.Public | BindingFlags.Instance); //create an array of all public AudioClip within this instance of the script
+        // This example gets public instance fields. Adjust BindingFlags as needed.
+
+        //Debug.Log($"Variables in {targettype.Name}:");
+        foreach (FieldInfo field in fields)
+        {
+            //Debug.Log($"  Name: {field.Name}, Type: {field.FieldType}");
+            if(field.Name == audiovariablename && field.FieldType == targettype)
+            {
+                AudioClip fieldValue = (AudioClip)field.GetValue(this); // 'this' is the instance
+                localaudio = fieldValue;
+                return (localaudio);
+            }
+        }
+
+
+        return explosionsound;
     }
 
 }

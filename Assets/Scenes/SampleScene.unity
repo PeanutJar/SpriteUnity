@@ -250,7 +250,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1638,6 +1638,10 @@ PrefabInstance:
     - target: {fileID: 1607087503500720220, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
       propertyPath: m_Name
       value: Meteor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607087503500720220, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1643703547340104775, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
       propertyPath: m_AnchorMax.y

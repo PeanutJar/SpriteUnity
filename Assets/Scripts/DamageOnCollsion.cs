@@ -42,6 +42,7 @@ public class DamageOnCollsion : MonoBehaviour
                 {
                     //other.gameObject.GetComponent<MeteorScript>().changehealthbar(impactdamage);
                     other.gameObject.GetComponent<Health>().ChangeHealthBar(impactdamage, other.gameObject.GetComponent<MeteorScript>().gethealthbar(), other.gameObject.GetComponent<MeteorScript>().returnHealthScale());
+                    other.gameObject.GetComponent<AudioPlayer>().PlayAudio(other.gameObject.GetComponent<MeteorScript>().getAudio("explosionsound"), 1f);
                     other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, false);
                 }
             }
