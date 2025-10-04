@@ -1,5 +1,8 @@
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Reflection;
 
 public class PawnSpaceShip : Pawn
 {
@@ -12,6 +15,10 @@ public class PawnSpaceShip : Pawn
     private bool isboost;
     private Image healthbar;
     private Vector3 defaulthealthbarscale;
+
+    [Header("AudioClips")]
+    public AudioClip impactsound;
+    public AudioClip firingsound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -76,6 +83,30 @@ public class PawnSpaceShip : Pawn
     public Vector3 returnHealthScale()
     {
         return (defaulthealthbarscale);
+    }
+
+    public AudioClip getAudio(string audiovariablename) //uses "Reflection" technique
+    {
+        AudioClip localaudio;
+        Type targettype = this.GetType();
+        FieldInfo[] fields = targettype.GetFields(BindingFlags.Public | BindingFlags.Instance); //create an array of all public AudioClip within this instance of the script
+        // This example gets public instance fields. Adjust BindingFlags as needed.
+
+        //Debug.Log($"Variables in {targettype.Name}:");
+        foreach (FieldInfo field in fields)
+        {
+            //Debug.Log($"  Name: {field.Name}, Type: {field.FieldType}");
+            if (field.Name == audiovariablename && field.FieldType == typeof(AudioClip))
+            {
+                print("meep2");
+                AudioClip fieldValue = (AudioClip)field.GetValue(this); // 'this' is the instance
+                localaudio = fieldValue;
+                return (localaudio);
+            }
+        }
+
+
+        return impactsound;
     }
 
 }

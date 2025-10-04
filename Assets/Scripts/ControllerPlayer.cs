@@ -99,6 +99,7 @@ public class ControllerPlayer : Controller
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            pawnobject.gameObject.GetComponent<AudioPlayer>().PlayAudio(pawnobject.gameObject.GetComponent<PawnSpaceShip>().getAudio("firingsound"), 0.7f);
             pawnobject.GetComponent<Shooter>().Shoot();
         }
     }

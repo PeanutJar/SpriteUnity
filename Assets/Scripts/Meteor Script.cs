@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using static UnityEditor.PlayerSettings;
 using System;
 using System.Reflection;
+using System.Linq;
 
 public class MeteorScript : MonoBehaviour
 {
@@ -91,16 +92,18 @@ public class MeteorScript : MonoBehaviour
     public AudioClip getAudio(string audiovariablename) //uses "Reflection" technique
     {
         AudioClip localaudio;
-        Type targettype = typeof(AudioClip);
+        Type targettype = this.GetType(); //ultimately we want to get variables of type AudioClip within the class (type) of MeteorScript
         FieldInfo[] fields = targettype.GetFields(BindingFlags.Public | BindingFlags.Instance); //create an array of all public AudioClip within this instance of the script
         // This example gets public instance fields. Adjust BindingFlags as needed.
-
+        print(fields.Count());
         //Debug.Log($"Variables in {targettype.Name}:");
         foreach (FieldInfo field in fields)
         {
+            print("meep3");
             //Debug.Log($"  Name: {field.Name}, Type: {field.FieldType}");
-            if(field.Name == audiovariablename && field.FieldType == targettype)
+            if (field.Name == audiovariablename && field.FieldType == typeof(AudioClip))
             {
+                print("meep1");
                 AudioClip fieldValue = (AudioClip)field.GetValue(this); // 'this' is the instance
                 localaudio = fieldValue;
                 return (localaudio);
