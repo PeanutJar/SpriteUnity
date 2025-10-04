@@ -21,6 +21,10 @@ public class AudioPlayer : MonoBehaviour
     {
         audiosource.PlayOneShot(mainaudiosound, .7f);
     }
+    public void PlayAudio(float volume)
+    {
+        audiosource.PlayOneShot(mainaudiosound, volume);
+    }
     public void PlayAudio(AudioClip audio, float volume)
     {
         AudioSource.PlayClipAtPoint(audio, transform.position, volume); //creates a temporary GameObject at a specified position, attaches an AudioSource to it, plays the given AudioClip, and automatically
