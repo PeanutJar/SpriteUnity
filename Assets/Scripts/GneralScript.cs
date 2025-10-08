@@ -11,6 +11,7 @@ public class GneralScript : MonoBehaviour
     [Header("GameLayers")]
     public GameObject gamelayer;
     public GameObject menulayer;
+    public GameObject creditslayer;
     [SerializeField] private Canvas gamecanvas;
 
     [Header("Players")]
@@ -39,6 +40,7 @@ public class GneralScript : MonoBehaviour
         {
             instance = this;
             gamelayer.SetActive(false);
+            creditslayer.SetActive(false);
             menulayer.SetActive(true);
         }
     }
@@ -51,7 +53,7 @@ public class GneralScript : MonoBehaviour
 
     public void Reset()
     {
-        foreach(Transform gameobj in gamelayer.transform)
+        foreach(Transform gameobj in gamelayer.transform) //destoryed gameobjects in the gamelayer that aren't the canvas elements (UI)
         {
             if(gameobj.gameObject != gamecanvas.gameObject)
             {
@@ -68,15 +70,16 @@ public class GneralScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!menulayer.activeSelf && gamelayer.activeSelf) //game only runs if in "game mode"
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                //gamelayer.SetActive(!gamelayer.activeSelf);
-                //menulayer.SetActive(!menulayer.activeSelf);
-                gamelayer.SetActive(false);
-                menulayer.SetActive(true);
-            }
+            //gamelayer.SetActive(!gamelayer.activeSelf);
+            //menulayer.SetActive(!menulayer.activeSelf);
+            gamelayer.SetActive(false);
+            creditslayer.SetActive(false);
+            menulayer.SetActive(true);
+        }
+        if (!menulayer.activeSelf && !creditslayer.activeSelf && gamelayer.activeSelf) //game only runs if in "game mode"
+        {
 
             timecount += Time.deltaTime;
 

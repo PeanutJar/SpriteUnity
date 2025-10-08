@@ -28,4 +28,10 @@ public class MenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void RollCredits()
+    {
+        cam.GetComponent<GneralScript>().creditslayer.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
 }
