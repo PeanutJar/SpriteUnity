@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class ControllerPlayer : Controller
 {
@@ -10,14 +11,26 @@ public class ControllerPlayer : Controller
     public int randomteleportXmax = 9;
     public int randomteleportYmax = 4;
     [SerializeField] private Image healthbar;
+    [SerializeField] private int lives;
+    [SerializeField] private GameObject heartsobj;
+    private List<Image> hearts;
+    private Vector3 defaulthealthbarscale;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        defaulthealthbarscale = healthbar.transform.localScale;
+        hearts = new List<Image>();
+        heartsobj.transform.position = new Vector3(330, 80, 0);
+        Image _heart;
+        for(int i = 0; i < lives; i++)
+        {
+            _heart = Instantiate(Camera.main.GetComponent<GneralScript>().heartimage, new Vector3(heartsobj.transform.position.x + (30*i), heartsobj.transform.position.y, 0), Quaternion.identity, heartsobj.transform) as Image;
+            hearts.Add(_heart);
+        }
     }
-    public void IstantiateHealthBar()
+    public void IstantiatePawnPlayerConnection()
     {
-        pawnobject.GetComponentInChildren<PawnSpaceShip>().IstantiateHealthBar(healthbar);
+        pawnobject.GetComponentInChildren<PawnSpaceShip>().IstantiatePawnPlayerConnection(this);
     }
 
     // Update is called once per frame
@@ -101,6 +114,50 @@ public class ControllerPlayer : Controller
         {
             pawnobject.gameObject.GetComponent<AudioPlayer>().PlayAudio(pawnobject.gameObject.GetComponent<PawnSpaceShip>().getAudio("firingsound"), 0.7f);
             pawnobject.GetComponent<Shooter>().Shoot();
+        }
+    }
+
+    public Image gethealthbar()
+    {
+        return (healthbar);
+    }
+
+    public Vector3 returnHealthScale()
+    {
+        return (defaulthealthbarscale);
+    }
+
+    public int getLives()
+    {
+        return (lives);
+    }
+    public void setLives(int _lives)
+    {
+        lives += _lives;
+    }
+    public List<Image> getHeartsList()
+    {
+        return (hearts);
+    }
+    public void setHeartsList(List<Image> list)
+    {
+        hearts = list;
+    }
+    public void ResetHeartsList()
+    {
+        if (hearts.Count > 0)
+        {
+            for(int i = 0; i < hearts.Count; i++)
+            {
+                Destroy(hearts[i].gameObject);
+                hearts.Remove(hearts[i]);
+            }
+            Image _heart;
+            for (int i = 0; i < lives; i++)
+            {
+                _heart = Instantiate(Camera.main.GetComponent<GneralScript>().heartimage, new Vector3(heartsobj.transform.position.x + (30 * i), heartsobj.transform.position.y, 0), Quaternion.identity, heartsobj.transform) as Image;
+                hearts.Add(_heart);
+            }
         }
     }
 }

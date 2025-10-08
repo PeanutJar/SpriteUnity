@@ -285,9 +285,9 @@ MonoBehaviour:
     Programmer - Dexter Paclebar
 
     Sprite Models - Kenny.nl
+    & MR3_2004
 
-    Music
-    & Audio - AbundantMusic.com & Victor_Natas
+    Music & Audio - AbundantMusic.com & Victor_Natas
 
 '
   m_isRightToLeft: 0
@@ -450,7 +450,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -527,6 +527,7 @@ MonoBehaviour:
   playerpawnprefab: {fileID: 6481298048236743760, guid: 8021b9aa0eab66b448143cac042e0594, type: 3}
   playercontrollerprefab: {fileID: 2187741881811673663, guid: fc6a965d7fd56444795ff7dc90897c54, type: 3}
   meteorprefab: {fileID: 1607087503500720220, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+  heartimage: {fileID: 1327287030667039033, guid: 2eb62d0278062304fbc87a737ab7ae94, type: 3}
   score: 0
   scoretext: {fileID: 1114203957}
 --- !u!82 &519420034

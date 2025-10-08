@@ -13,6 +13,8 @@ public class GneralScript : MonoBehaviour
     public GameObject menulayer;
     public GameObject creditslayer;
     [SerializeField] private Canvas gamecanvas;
+    //public GameObject heartsobj;
+    //public List<Image> hearts;
 
     [Header("Players")]
     public List<ControllerPlayer> players;
@@ -21,6 +23,7 @@ public class GneralScript : MonoBehaviour
     public GameObject playerpawnprefab;
     public GameObject playercontrollerprefab;
     public GameObject meteorprefab;
+    public Image heartimage;
 
     private float timecount;
     public int score;
@@ -48,6 +51,7 @@ public class GneralScript : MonoBehaviour
     {
         players = new List<ControllerPlayer>(); //needs to stay, otherwise previously created game objects do not get deleted (since they are no longer associated with this new list)
         //could fix by createing a function that removes all existing unwated game objects, but I don't feel like doing that -> Edit: I....uhhh. I went ahead and did that...
+        //hearts = new List<Image>();
         Reset();
     }
 
@@ -59,6 +63,15 @@ public class GneralScript : MonoBehaviour
             {
                 Destroy(gameobj.gameObject);
             }
+            /*
+            else if(gameobj.gameObject == gamecanvas.gameObject && hearts.Count > 0)
+            {
+                for(int i = 0; i < hearts.Count; i ++)
+                {
+                    Destroy(hearts[i].gameObject);
+                }
+            }
+            */
         }
         
         SpawnPlayerController();
@@ -107,7 +120,7 @@ public class GneralScript : MonoBehaviour
             if (newpawn != null)
             {
                 players[0].pawnobject = newpawn;
-                players[0].gameObject.GetComponent<ControllerPlayer>().IstantiateHealthBar();
+                players[0].gameObject.GetComponent<ControllerPlayer>().IstantiatePawnPlayerConnection();
             }
         }
         

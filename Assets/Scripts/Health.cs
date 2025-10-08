@@ -23,7 +23,23 @@ public class Health : MonoBehaviour
         print("Health:" + health + " " + gameObject.tag);
         if (health <= 0 || _instdeath)
         {
-            Die();
+            if(gameObject.tag == "Player")
+            {
+                if(gameObject.GetComponent<PawnSpaceShip>().IsOutOfLives())
+                {
+                    Die();
+                }
+                else
+                {
+                    //gameObject.GetComponent<PawnSpaceShip>().gethealthbar()
+                    //ChangeHealthBar(0, maxhealth, gameObject.GetComponent<PawnSpaceShip>().returnHealthScale());
+                    ResetHealthBar(gameObject.GetComponent<PawnSpaceShip>().gethealthbar(),gameObject.GetComponent<PawnSpaceShip>().returnHealthScale());
+                }
+            }
+            else
+            {
+                Die();
+            }
         }
     }
 
@@ -62,6 +78,12 @@ public class Health : MonoBehaviour
         Vector3 newScale = new Vector3(_defaulthealthbarscale.x * scalefactor, _defaulthealthbarscale.y, _defaulthealthbarscale.z);
         // Assign the new scale to the object's localScale
         _healthbar.transform.localScale = newScale;
+    }
+
+    private void ResetHealthBar(Image _healthbar, Vector3 _defaulthealthbarscale)
+    {
+        _healthbar.transform.localScale = _defaulthealthbarscale;
+        health = maxhealth;
     }
 
     public int GetMaxHealth()

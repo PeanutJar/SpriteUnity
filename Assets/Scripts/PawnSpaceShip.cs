@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Reflection;
+using System.Collections.Generic;
 
 public class PawnSpaceShip : Pawn
 {
@@ -13,8 +14,12 @@ public class PawnSpaceShip : Pawn
     public float speedmultiplier = 1.5f;
     public float rotatespeed = 360f;
     private bool isboost;
-    private Image healthbar;
-    private Vector3 defaulthealthbarscale;
+    //private Image healthbar;
+    //private Vector3 defaulthealthbarscale;
+    private ControllerPlayer pawnparent;
+    //private int lives;
+    //private List<Image> hearts;
+
 
     [Header("AudioClips")]
     public AudioClip impactsound;
@@ -32,10 +37,13 @@ public class PawnSpaceShip : Pawn
        
     }
 
-    public void IstantiateHealthBar(Image _healthbar)
+    public void IstantiatePawnPlayerConnection(ControllerPlayer parent)
     {
-        healthbar = _healthbar;
-        defaulthealthbarscale = healthbar.transform.localScale;
+        pawnparent = parent;
+        //healthbar = parent.gethealthbar();
+        //defaulthealthbarscale = healthbar.transform.localScale;
+        //lives = parent.getLives();
+        //hearts = parent.hearts;
     }
 
     public override void Move(Vector3 movevector)
@@ -77,12 +85,22 @@ public class PawnSpaceShip : Pawn
 
     public Image gethealthbar()
     {
-        return (healthbar);
+        return (pawnparent.gethealthbar());
     }
 
     public Vector3 returnHealthScale()
     {
-        return (defaulthealthbarscale);
+        return (pawnparent.returnHealthScale());
+    }
+
+    public int getLives()
+    {
+        return (pawnparent.getLives());
+    }
+
+    public List<Image> getHeartsList()
+    {
+        return (pawnparent.getHeartsList());
     }
 
     public AudioClip getAudio(string audiovariablename) //uses "Reflection" technique
@@ -107,6 +125,30 @@ public class PawnSpaceShip : Pawn
 
 
         return impactsound;
+    }
+
+    public bool IsOutOfLives()
+    {
+        if(pawnparent.getLives() <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            pawnparent.setLives(-1);
+            List<Image> _heartslist = pawnparent.getHeartsList();
+            if(_heartslist.Count > 0)
+            {
+                Destroy(_heartslist[_heartslist.Count - 1].gameObject);
+                _heartslist.Remove(_heartslist[_heartslist.Count - 1]);
+                pawnparent.setHeartsList(_heartslist);
+                if (_heartslist.Count <= 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false; 
     }
 
 }
