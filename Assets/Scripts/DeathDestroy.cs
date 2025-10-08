@@ -23,6 +23,10 @@ public class DeathDestroy : Death
                 Camera.main.GetComponent<GneralScript>().score += gameObject.GetComponent<MeteorScript>().scoreincreaser;
             }
         }
+        else if(gameObject.tag == "Player")
+        {
+            Camera.main.GetComponent<GneralScript>().GameEnd(); //an alternative is passing in the gameobject, if wanting to discern between numerous players
+        }
         Destroy(gameObject);
     }
 }

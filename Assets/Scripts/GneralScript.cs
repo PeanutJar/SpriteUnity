@@ -12,6 +12,7 @@ public class GneralScript : MonoBehaviour
     public GameObject gamelayer;
     public GameObject menulayer;
     public GameObject creditslayer;
+    public GameObject gameoverlayer;
     [SerializeField] private Canvas gamecanvas;
     //public GameObject heartsobj;
     //public List<Image> hearts;
@@ -28,6 +29,8 @@ public class GneralScript : MonoBehaviour
     private float timecount;
     public int score;
     public TextMeshProUGUI scoretext;
+    public TextMeshProUGUI losetext;
+    public TextMeshProUGUI wintext;
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,6 +47,9 @@ public class GneralScript : MonoBehaviour
             instance = this;
             gamelayer.SetActive(false);
             creditslayer.SetActive(false);
+            gameoverlayer.SetActive(false);
+            losetext.gameObject.SetActive(false);
+            wintext.gameObject.SetActive(false);
             menulayer.SetActive(true);
         }
     }
@@ -89,9 +95,12 @@ public class GneralScript : MonoBehaviour
             //menulayer.SetActive(!menulayer.activeSelf);
             gamelayer.SetActive(false);
             creditslayer.SetActive(false);
+            gameoverlayer.SetActive(false);
+            losetext.gameObject.SetActive(false);
+            wintext.gameObject.SetActive(false);
             menulayer.SetActive(true);
         }
-        if (!menulayer.activeSelf && !creditslayer.activeSelf && gamelayer.activeSelf) //game only runs if in "game mode"
+        if (!menulayer.activeSelf && !creditslayer.activeSelf && !gameoverlayer.activeSelf && gamelayer.activeSelf) //game only runs if in "game mode"
         {
 
             timecount += Time.deltaTime;
@@ -176,5 +185,13 @@ public class GneralScript : MonoBehaviour
                 obstacle.GetComponent<MeteorScript>().istanctiate(pos);
             }
         }
+    }
+
+    public void GameEnd()
+    {
+        //if (players[0].gameObject.getComponent<ControllerPlayer>().getLives)
+        gameoverlayer.SetActive(true);
+        losetext.gameObject.SetActive(true);
+        gamelayer.SetActive(false);
     }
 }
