@@ -679,6 +679,11 @@ MonoBehaviour:
   borderLeft: -12
   borderBottom: -6
   borderRight: 12
+  explosionsound: {fileID: 8300000, guid: 1fc024c78adbae542b931777bceadc51, type: 3}
+  ufosound: {fileID: 8300000, guid: d8dd45761bfa5c846b1dfd585112d9ce, type: 3}
+  spaceshipimpactsound: {fileID: 8300000, guid: 1e9453c15d9b90c4f8cb1ec564794366, type: 3}
+  projectilesound: {fileID: 8300000, guid: 8ffcbbb98deba6d45af7cd057d5f6fba, type: 3}
+  backgroundmusic: {fileID: 8300000, guid: 27003d1fb8ef1804f9faef6ab85cedbb, type: 3}
 --- !u!82 &519420034
 AudioSource:
   m_ObjectHideFlags: 0

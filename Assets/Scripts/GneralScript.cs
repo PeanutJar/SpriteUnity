@@ -47,6 +47,13 @@ public class GneralScript : MonoBehaviour
     public float borderBottom;
     public float borderRight;
 
+    [Header("AudioClips")] //only putting this here for requiremetns sake, personally I just don't see the need for the information being here, when I can just have some audio object
+    public AudioClip explosionsound;
+    public AudioClip ufosound;
+    public AudioClip spaceshipimpactsound;
+    public AudioClip projectilesound;
+    public AudioClip backgroundmusic;
+
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
