@@ -115,6 +115,8 @@ MonoBehaviour:
   scoreincreaser: 1
   speed: 2
   healthbar: {fileID: 1340580935709331175}
+  asteroidondeathprefab: {fileID: 1607087503500720220, guid: fe0dab3fb8a2bd647a216b29d0f95cd9, type: 3}
+  spawnasteroids: 3
   collisionsound: {fileID: 8300000, guid: 1fc024c78adbae542b931777bceadc51, type: 3}
 --- !u!65 &6815688607642764992
 BoxCollider:

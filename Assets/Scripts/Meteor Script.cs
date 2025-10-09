@@ -7,6 +7,8 @@ using static UnityEditor.PlayerSettings;
 using System;
 using System.Reflection;
 using System.Linq;
+using NUnit.Framework.Internal;
+using static UnityEngine.GraphicsBuffer;
 
 public class MeteorScript : Obstacle
 {
@@ -15,6 +17,8 @@ public class MeteorScript : Obstacle
     private Vector3 initialposition;
     [SerializeField] private Image healthbar;
     private Vector3 defaulthealthbarscale;
+    [SerializeField] private GameObject asteroidondeathprefab;
+    [SerializeField] private int spawnasteroids;
 
     [Header("AudioClips")]
     public AudioClip collisionsound;
@@ -28,6 +32,10 @@ public class MeteorScript : Obstacle
     {
         initialposition = pos;
         moveDirection = (initialposition - (Vector3)transform.position).normalized; //point in direction of player/target position when istanciated
+    }
+    public void setMoveDirection(Vector3 pos)
+    {
+        moveDirection = pos;
     }
 
     // Update is called once per frame
@@ -52,6 +60,30 @@ public class MeteorScript : Obstacle
 
 
 
+    }
+
+    public void SpawnDeathRocks()
+    {
+        if(spawnasteroids > 0 && asteroidondeathprefab != null)
+        {
+            for(int i = 0; i < spawnasteroids; i++) {
+                //Calculate angle offset for each object
+                float angleStep = 360f / spawnasteroids;
+                float angle = i * angleStep;
+
+                // Rotate the base direction around the target’s up axis
+                Quaternion rotation = Quaternion.AngleAxis(angle, transform.forward);
+                Vector3 offset = rotation * moveDirection * 0.5f;
+
+                // Apply target’s rotation to align circle with its facing direction
+                Vector3 spawnPosition = transform.position + offset;
+
+                GameObject obstacle = Instantiate(asteroidondeathprefab, spawnPosition, Quaternion.identity, 
+                    Camera.main.GetComponent<GneralScript>().gamelayer.transform) as GameObject;
+
+                obstacle.GetComponent<MeteorScript>().setMoveDirection(moveDirection); //so it still moves in the same direction
+            }
+        }
     }
 
     public override bool GetInstDeath()
