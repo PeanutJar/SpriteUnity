@@ -114,6 +114,7 @@ MonoBehaviour:
   healthcomponent: {fileID: 0}
   scoreincreaser: 1
   speed: 2
+  ismainenemy: 1
   healthbar: {fileID: 1340580935709331175}
   asteroidondeathprefab: {fileID: 1607087503500720220, guid: cb1d54a02078c0b4087e15774b272a1d, type: 3}
   spawnasteroids: 2

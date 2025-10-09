@@ -25,11 +25,15 @@ public class DeathDestroy : Death
                 {
                     gameObject.GetComponent<MeteorScript>().SpawnDeathRocks();
                 }
+                if(gameObject.GetComponent<Obstacle>().isfinalenemy)
+                {
+                    Camera.main.GetComponent<GneralScript>().destroyedmainenemies += 1;
+                }
             }
         }
         else if(gameObject.tag == "Player")
         {
-            Camera.main.GetComponent<GneralScript>().GameEnd(); //an alternative is passing in the gameobject, if wanting to discern between numerous players
+            Camera.main.GetComponent<GneralScript>().GameEnd(false); //an alternative is passing in the gameobject, if wanting to discern between numerous players
         }
         Destroy(gameObject);
     }

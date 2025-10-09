@@ -39,6 +39,9 @@ public class GneralScript : MonoBehaviour
     private float left;
     private float right;
     [SerializeField] private int isufochancepercentage;
+    public int initialenemyspawnlimit;
+    public int destroyedmainenemies;
+    private int spawnedmainenemies;
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -97,6 +100,8 @@ public class GneralScript : MonoBehaviour
         SpawnPlayer();
         timecount = 0;
         score = 0;
+        spawnedmainenemies = 0;
+        destroyedmainenemies = 0;
     }
 
     // Update is called once per frame
@@ -116,14 +121,22 @@ public class GneralScript : MonoBehaviour
         if (!menulayer.activeSelf && !creditslayer.activeSelf && !gameoverlayer.activeSelf && gamelayer.activeSelf) //game only runs if in "game mode"
         {
 
-            timecount += Time.deltaTime;
-
-            if (timecount > 2)
+            if(spawnedmainenemies < initialenemyspawnlimit)
             {
-                timecount = 0;
-                SpawnObstacle();
+                timecount += Time.deltaTime;
+
+                if (timecount > 2)
+                {
+                    timecount = 0;
+                    SpawnObstacle();
+                }
             }
             scoretext.text = "Score: " + score;
+            if (destroyedmainenemies >= initialenemyspawnlimit)
+            {
+                GameEnd(true);
+            }
+
         }
     }
 
@@ -212,14 +225,22 @@ public class GneralScript : MonoBehaviour
                 obstacle = Instantiate(tester, new Vector3(right, bottom, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom right from character
                 obstacle.GetComponent<Obstacle>().setDirection(pos);
             }
+            spawnedmainenemies += 1;
         }
     }
 
-    public void GameEnd()
+    public void GameEnd(bool iswin)
     {
         //if (players[0].gameObject.getComponent<ControllerPlayer>().getLives)
         gameoverlayer.SetActive(true);
-        losetext.gameObject.SetActive(true);
+        if (!iswin)
+        {
+            losetext.gameObject.SetActive(true);
+        }
+        else
+        {
+            wintext.gameObject.SetActive(true);
+        }
         gamelayer.SetActive(false);
     }
 }

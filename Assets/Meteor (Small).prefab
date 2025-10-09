@@ -113,8 +113,11 @@ MonoBehaviour:
   isinstantdeath: 0
   healthcomponent: {fileID: 0}
   scoreincreaser: 1
-  speed: 2
+  speed: 3
+  isfinalenemy: 1
   healthbar: {fileID: 1340580935709331175}
+  asteroidondeathprefab: {fileID: 0}
+  spawnasteroids: 0
   collisionsound: {fileID: 8300000, guid: 1fc024c78adbae542b931777bceadc51, type: 3}
 --- !u!65 &6815688607642764992
 BoxCollider:

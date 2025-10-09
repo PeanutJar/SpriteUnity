@@ -672,7 +672,9 @@ MonoBehaviour:
   scoretext: {fileID: 1114203957}
   losetext: {fileID: 1078381227}
   wintext: {fileID: 459940181}
-  isufochancepercentage: 1
+  isufochancepercentage: 50
+  initialenemyspawnlimit: 15
+  destroyedmainenemies: 0
 --- !u!82 &519420034
 AudioSource:
   m_ObjectHideFlags: 0

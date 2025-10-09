@@ -9,6 +9,7 @@ public abstract class Obstacle : MonoBehaviour
     public Health healthcomponent;
     public int scoreincreaser;
     public float speed;
+    public bool isfinalenemy;
 
     public abstract void setDirection(Vector3 pos);
 
