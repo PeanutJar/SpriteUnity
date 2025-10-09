@@ -142,7 +142,6 @@ public class GneralScript : MonoBehaviour
                     SpawnObstacle();
                 }
             }
-            scoretext.text = "Score: " + score;
             if (destroyedmainenemies >= initialenemyspawnlimit)
             {
                 GameEnd(true);

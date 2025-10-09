@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class DeathDestroy : Death
 {
@@ -21,7 +22,8 @@ public class DeathDestroy : Death
             if (gameObject.GetComponent<Obstacle>().healthcomponent.GetHealth() <= 0) //prevents score being added unless player actualy shoots them down
             {
                 Camera.main.GetComponent<GneralScript>().score += gameObject.GetComponent<Obstacle>().scoreincreaser;
-                if(gameObject.GetComponent<MeteorScript>() != null)
+                Camera.main.GetComponent<GneralScript>().scoretext.text = "Score: " + Camera.main.GetComponent<GneralScript>().score;
+                if (gameObject.GetComponent<MeteorScript>() != null)
                 {
                     gameObject.GetComponent<MeteorScript>().SpawnDeathRocks();
                 }
