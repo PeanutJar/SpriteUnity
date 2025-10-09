@@ -20,7 +20,7 @@ public class ControllerPlayer : Controller
     {
         defaulthealthbarscale = healthbar.transform.localScale;
         hearts = new List<Image>();
-        heartsobj.transform.position = new Vector3(330, 80, 0);
+        heartsobj.transform.position = new Vector3(210, 32.5f, 0); // just to make sure (even though this is already set in preset could jstu get rid of this)
         Image _heart;
         for(int i = 0; i < lives; i++)
         {

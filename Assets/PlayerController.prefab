@@ -51,7 +51,6 @@ MonoBehaviour:
   healthbar: {fileID: 1514515949804573488}
   lives: 3
   heartsobj: {fileID: 3015947679952985897}
-  hearts: []
 --- !u!1 &3015947679952985897
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,11 +81,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6952640915713825258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 200, y: 30}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &5524055355932228336
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 138.62503, y: 69.3125}
+  m_AnchoredPosition: {x: 20, y: 20}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &5122711241618277282

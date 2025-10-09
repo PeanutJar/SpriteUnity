@@ -50,12 +50,34 @@ public class MeteorScript : Obstacle
                 transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             }
         }
-        float halfHeight = Camera.main.orthographicSize;
-        float halfWidth = halfHeight * Camera.main.aspect;
-        if (transform.position.y > (Camera.main.transform.position.y + halfHeight + 2) || transform.position.y < (Camera.main.transform.position.y - halfHeight - 2) ||
-            transform.position.x > (Camera.main.transform.position.x + halfWidth + 2) || transform.position.x < (Camera.main.transform.position.x - halfWidth - 2)) //can also incorporated a timer (for depending on how long projectile  has been off screen)
+        GneralScript gencam = Camera.main.gameObject.GetComponent<GneralScript>();
+        //float halfHeight = Camera.main.orthographicSize;
+        //float halfWidth = halfHeight * Camera.main.aspect;
+        if (transform.position.y > gencam.borderTop || transform.position.y < gencam.borderBottom ||
+            transform.position.x > gencam.borderRight || transform.position.x < gencam.borderLeft) //can also incorporated a timer (for depending on how long projectile  has been off screen)
         {
-            gameObject.GetComponent<DeathDestroy>().Die();
+            //gameObject.GetComponent<DeathDestroy>().Die();
+            //transform.position = new Vector3(transform.position.x * -0.9f, transform.position.y * -0.9f, 0); //0.9 instead of 1 so they just don't immedientally spawn on the borderline again
+            
+            //this way isn't actually that great, but since they all spawn in the corner anyway, it works fine
+            //also technically i should create code so it also factors if any of these land on 0 as an axis, but I'm not really concerned about such at the moment
+            if (moveDirection.y > 0)
+            {
+                transform.position = new Vector3(transform.position.x, gencam.borderBottom+1, 0);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, gencam.borderTop-1, 0);
+            }
+            if (moveDirection.x > 0)
+            {
+                transform.position = new Vector3(gencam.borderLeft+1, transform.position.y, 0);
+            }
+            else
+            {
+                transform.position = new Vector3(gencam.borderRight-1, transform.position.y, 0);
+            }
+            
         }
 
 

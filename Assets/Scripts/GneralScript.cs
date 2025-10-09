@@ -42,6 +42,10 @@ public class GneralScript : MonoBehaviour
     public int initialenemyspawnlimit;
     public int destroyedmainenemies;
     private int spawnedmainenemies;
+    public float borderTop;
+    public float borderLeft;
+    public float borderBottom;
+    public float borderRight;
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
