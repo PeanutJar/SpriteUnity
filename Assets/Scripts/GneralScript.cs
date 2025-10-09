@@ -167,22 +167,22 @@ public class GneralScript : MonoBehaviour
             if (r1 == 1)
             {
                 GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, 6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top left from character
-                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+                obstacle.GetComponent<MeteorScript>().setDirection(pos);
             }
             else if (r1 == 2)
             {
                 GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, -6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom left from character
-                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+                obstacle.GetComponent<MeteorScript>().setDirection(pos);
             }
             else if (r1 == 3)
             {
                 GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, 6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top right from character
-                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+                obstacle.GetComponent<MeteorScript>().setDirection(pos);
             }
             else if (r1 == 4)
             {
                 GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, -6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom right from character
-                obstacle.GetComponent<MeteorScript>().istanctiate(pos);
+                obstacle.GetComponent<MeteorScript>().setDirection(pos);
             }
         }
     }

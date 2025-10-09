@@ -8,26 +8,24 @@ using System;
 using System.Reflection;
 using System.Linq;
 
-public class MeteorScript : MonoBehaviour
+public class MeteorScript : Obstacle
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private bool isinstantdeath = false;
-    public Health healthcomponent;
     private Vector3 moveDirection;
     private Vector3 initialposition;
-    public int scoreincreaser;
     [SerializeField] private Image healthbar;
     private Vector3 defaulthealthbarscale;
 
     [Header("AudioClips")]
-    public AudioClip explosionsound;
+    public AudioClip collisionsound;
     void Start()
     {
         this.gameObject.tag = "Obstacle";
         healthcomponent = GetComponent<Health>();
         defaulthealthbarscale = healthbar.transform.localScale;
     }
-    public void istanctiate(Vector3 pos)
+    public override void setDirection(Vector3 pos)
     {
         initialposition = pos;
         moveDirection = (initialposition - (Vector3)transform.position).normalized; //point in direction of player position when istanciated
@@ -76,12 +74,12 @@ public class MeteorScript : MonoBehaviour
         healthbar.transform.localScale = newScale;
     }
     */
-    public Image gethealthbar()
+    public override Image gethealthbar()
     {
         return (healthbar);
     }
 
-    public Vector3 returnHealthScale()
+    public override Vector3 returnHealthScale()
     {
         return (defaulthealthbarscale);
     }
@@ -89,7 +87,7 @@ public class MeteorScript : MonoBehaviour
     //if passed string matches the according AudioClip variable name, then passes that variable's value (passing via variabel name instead of actual audio file name, cuz I intend for the audio clips to still
     //be viewable through the inspector, so people can just pass the given/assigned/desired variable name instead of the actual file name. I think this may be better for if you may want to switch what sounds
     //you use for the same mechanics (ex: chanign explosion sounds).
-    public AudioClip getAudio(string audiovariablename) //uses "Reflection" technique
+    public override AudioClip getAudio(string audiovariablename) //uses "Reflection" technique
     {
         AudioClip localaudio;
         Type targettype = this.GetType(); //ultimately we want to get variables of type AudioClip within the class (type) of MeteorScript
@@ -99,11 +97,9 @@ public class MeteorScript : MonoBehaviour
         //Debug.Log($"Variables in {targettype.Name}:");
         foreach (FieldInfo field in fields)
         {
-            print("meep3");
             //Debug.Log($"  Name: {field.Name}, Type: {field.FieldType}");
             if (field.Name == audiovariablename && field.FieldType == typeof(AudioClip))
             {
-                print("meep1");
                 AudioClip fieldValue = (AudioClip)field.GetValue(this); // 'this' is the instance
                 localaudio = fieldValue;
                 return (localaudio);
@@ -111,7 +107,7 @@ public class MeteorScript : MonoBehaviour
         }
 
 
-        return explosionsound;
+        return collisionsound;
     }
 
 }
