@@ -666,11 +666,13 @@ MonoBehaviour:
   playerpawnprefab: {fileID: 6481298048236743760, guid: 8021b9aa0eab66b448143cac042e0594, type: 3}
   playercontrollerprefab: {fileID: 2187741881811673663, guid: fc6a965d7fd56444795ff7dc90897c54, type: 3}
   meteorprefab: {fileID: 1607087503500720220, guid: be63638a5a860504f872ff2fdf4dc930, type: 3}
+  ufoprefab: {fileID: 1649136397089876291, guid: f42e22bcaed157242a4cbfb358c530d2, type: 3}
   heartimage: {fileID: 1327287030667039033, guid: 2eb62d0278062304fbc87a737ab7ae94, type: 3}
   score: 0
   scoretext: {fileID: 1114203957}
   losetext: {fileID: 1078381227}
   wintext: {fileID: 459940181}
+  isufochancepercentage: 50
 --- !u!82 &519420034
 AudioSource:
   m_ObjectHideFlags: 0

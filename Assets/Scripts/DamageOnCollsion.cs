@@ -29,7 +29,7 @@ public class DamageOnCollsion : MonoBehaviour
                         other.gameObject.GetComponent<AudioPlayer>().PlayAudio(other.gameObject.GetComponent<PawnSpaceShip>().getAudio("impactsound"), 1f);
                         other.gameObject.GetComponent<Health>().ChangeHealthBar(impactdamage, other.gameObject.GetComponent<PawnSpaceShip>().gethealthbar(), other.gameObject.GetComponent<PawnSpaceShip>().returnHealthScale());
                     }
-                    bool isdie = gameObject.GetComponent<MeteorScript>().GetInstDeath();
+                    bool isdie = gameObject.GetComponent<Obstacle>().GetInstDeath();
                     other.gameObject.GetComponent<Health>().TakeDamage(impactdamage, isdie);
                 }
 

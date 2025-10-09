@@ -11,7 +11,6 @@ using System.Linq;
 public class MeteorScript : Obstacle
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private bool isinstantdeath = false;
     private Vector3 moveDirection;
     private Vector3 initialposition;
     [SerializeField] private Image healthbar;
@@ -28,7 +27,7 @@ public class MeteorScript : Obstacle
     public override void setDirection(Vector3 pos)
     {
         initialposition = pos;
-        moveDirection = (initialposition - (Vector3)transform.position).normalized; //point in direction of player position when istanciated
+        moveDirection = (initialposition - (Vector3)transform.position).normalized; //point in direction of player/target position when istanciated
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class MeteorScript : Obstacle
     {
         if (initialposition != null || moveDirection != null)
         {
-            transform.position += (Vector3)(moveDirection * 2 * Time.deltaTime);
+            transform.position += (Vector3)(moveDirection * speed * Time.deltaTime);
 
             if (transform.position.z != 0)
             {
@@ -55,7 +54,7 @@ public class MeteorScript : Obstacle
 
     }
 
-    public bool GetInstDeath()
+    public override bool GetInstDeath()
     {
         return (isinstantdeath);
     }
@@ -93,7 +92,7 @@ public class MeteorScript : Obstacle
         Type targettype = this.GetType(); //ultimately we want to get variables of type AudioClip within the class (type) of MeteorScript
         FieldInfo[] fields = targettype.GetFields(BindingFlags.Public | BindingFlags.Instance); //create an array of all public AudioClip within this instance of the script
         // This example gets public instance fields. Adjust BindingFlags as needed.
-        print(fields.Count());
+        //print(fields.Count());
         //Debug.Log($"Variables in {targettype.Name}:");
         foreach (FieldInfo field in fields)
         {

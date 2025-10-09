@@ -5,10 +5,14 @@ using UnityEngine.UIElements;
 
 public abstract class Obstacle : MonoBehaviour
 {
+    public bool isinstantdeath = false;
     public Health healthcomponent;
     public int scoreincreaser;
+    public float speed;
 
     public abstract void setDirection(Vector3 pos);
+
+    public abstract bool GetInstDeath();
 
     public abstract UnityEngine.UI.Image gethealthbar();
 

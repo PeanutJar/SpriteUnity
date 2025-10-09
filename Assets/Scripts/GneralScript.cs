@@ -24,13 +24,21 @@ public class GneralScript : MonoBehaviour
     public GameObject playerpawnprefab;
     public GameObject playercontrollerprefab;
     public GameObject meteorprefab;
+    public GameObject ufoprefab;
     public Image heartimage;
 
+
+    [Header("Misc")]
     private float timecount;
     public int score;
     public TextMeshProUGUI scoretext;
     public TextMeshProUGUI losetext;
     public TextMeshProUGUI wintext;
+    private float top;
+    private float bottom;
+    private float left;
+    private float right;
+    [SerializeField] private int isufochancepercentage;
 
     //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -59,6 +67,11 @@ public class GneralScript : MonoBehaviour
         //could fix by createing a function that removes all existing unwated game objects, but I don't feel like doing that -> Edit: I....uhhh. I went ahead and did that...
         //hearts = new List<Image>();
         Reset();
+
+        top = Camera.main.orthographicSize;
+        bottom = -top;
+        right = Camera.main.aspect * Camera.main.orthographicSize;
+        left = -right;
     }
 
     public void Reset()
@@ -161,28 +174,43 @@ public class GneralScript : MonoBehaviour
     {
         if (players[0].pawnobject != null) //if pawn object no longer exists
         {
-            Vector3 pos = players[0].pawnobject.gameObject.transform.position;
+            Vector3 pos;
             System.Random random = new System.Random();
             int r1 = random.Next(1, 5); //1-4
+            int r2 = random.Next(1, 101); //1-100
+            GameObject obstacle;
+            GameObject tester;
+            if(r2 > isufochancepercentage) //if random num is greater than desired ufo chance percentage (ex: 70% chance of being ufo, so 71 or more num in order to be meteor)
+            {
+                tester = meteorprefab;
+                int r3 = random.Next((int)bottom, (int)top); 
+                int r4 = random.Next((int)left, (int)right);
+                pos = new Vector3(r3, r4, 0);
+            }
+            else
+            {
+                tester = ufoprefab;
+                pos = players[0].pawnobject.gameObject.transform.position;
+            }
             if (r1 == 1)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, 6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top left from character
-                obstacle.GetComponent<MeteorScript>().setDirection(pos);
+                obstacle = Instantiate(tester, new Vector3(left, top, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top left from character
+                obstacle.GetComponent<Obstacle>().setDirection(pos);
             }
             else if (r1 == 2)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(-6, -6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom left from character
-                obstacle.GetComponent<MeteorScript>().setDirection(pos);
+                obstacle = Instantiate(tester, new Vector3(left, bottom, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom left from character
+                obstacle.GetComponent<Obstacle>().setDirection(pos);
             }
             else if (r1 == 3)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, 6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top right from character
-                obstacle.GetComponent<MeteorScript>().setDirection(pos);
+                obstacle = Instantiate(tester, new Vector3(right, top, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top right from character
+                obstacle.GetComponent<Obstacle>().setDirection(pos);
             }
             else if (r1 == 4)
             {
-                GameObject obstacle = Instantiate(meteorprefab, pos + new Vector3(6, -6, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom right from character
-                obstacle.GetComponent<MeteorScript>().setDirection(pos);
+                obstacle = Instantiate(tester, new Vector3(right, bottom, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom right from character
+                obstacle.GetComponent<Obstacle>().setDirection(pos);
             }
         }
     }

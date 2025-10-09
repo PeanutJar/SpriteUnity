@@ -18,9 +18,9 @@ public class DeathDestroy : Death
     {
         if(gameObject.tag == "Obstacle")
         {
-            if (gameObject.GetComponent<MeteorScript>().healthcomponent.GetHealth() <= 0) //prevents score being added unless player actualy shoots them down
+            if (gameObject.GetComponent<Obstacle>().healthcomponent.GetHealth() <= 0) //prevents score being added unless player actualy shoots them down
             {
-                Camera.main.GetComponent<GneralScript>().score += gameObject.GetComponent<MeteorScript>().scoreincreaser;
+                Camera.main.GetComponent<GneralScript>().score += gameObject.GetComponent<Obstacle>().scoreincreaser;
             }
         }
         else if(gameObject.tag == "Player")

@@ -116,7 +116,6 @@ public class PawnSpaceShip : Pawn
             //Debug.Log($"  Name: {field.Name}, Type: {field.FieldType}");
             if (field.Name == audiovariablename && field.FieldType == typeof(AudioClip))
             {
-                print("meep2");
                 AudioClip fieldValue = (AudioClip)field.GetValue(this); // 'this' is the instance
                 localaudio = fieldValue;
                 return (localaudio);
