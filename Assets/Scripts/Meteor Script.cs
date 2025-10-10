@@ -51,33 +51,21 @@ public class MeteorScript : Obstacle
             }
         }
         GneralScript gencam = Camera.main.gameObject.GetComponent<GneralScript>();
-        //float halfHeight = Camera.main.orthographicSize;
-        //float halfWidth = halfHeight * Camera.main.aspect;
-        if (transform.position.y > gencam.borderTop || transform.position.y < gencam.borderBottom ||
-            transform.position.x > gencam.borderRight || transform.position.x < gencam.borderLeft) //can also incorporated a timer (for depending on how long projectile  has been off screen)
+        if(transform.position.y > gencam.borderTop)
         {
-            //gameObject.GetComponent<DeathDestroy>().Die();
-            //transform.position = new Vector3(transform.position.x * -0.9f, transform.position.y * -0.9f, 0); //0.9 instead of 1 so they just don't immedientally spawn on the borderline again
-            
-            //this way isn't actually that great, but since they all spawn in the corner anyway, it works fine
-            //also technically i should create code so it also factors if any of these land on 0 as an axis, but I'm not really concerned about such at the moment
-            if (moveDirection.y > 0)
-            {
-                transform.position = new Vector3(transform.position.x, gencam.borderBottom+1, 0);
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x, gencam.borderTop-1, 0);
-            }
-            if (moveDirection.x > 0)
-            {
-                transform.position = new Vector3(gencam.borderLeft+1, transform.position.y, 0);
-            }
-            else
-            {
-                transform.position = new Vector3(gencam.borderRight-1, transform.position.y, 0);
-            }
-            
+            transform.position = new Vector3(transform.position.x, gencam.borderBottom + 1, 0);
+        }
+        else if (transform.position.y < gencam.borderBottom)
+        {
+            transform.position = new Vector3(transform.position.x, gencam.borderTop - 1, 0);
+        }
+        if (transform.position.x > gencam.borderRight)
+        {
+            transform.position = new Vector3(gencam.borderLeft + 1, transform.position.y, 0);
+        }
+        else if (transform.position.x < gencam.borderLeft)
+        {
+            transform.position = new Vector3(gencam.borderRight - 1, transform.position.y, 0);
         }
 
 
@@ -104,6 +92,8 @@ public class MeteorScript : Obstacle
                     Camera.main.GetComponent<GneralScript>().gamelayer.transform) as GameObject;
 
                 obstacle.GetComponent<MeteorScript>().setMoveDirection(moveDirection); //so it still moves in the same direction
+
+                Camera.main.GetComponent<GneralScript>().enemyspawnlist.Add(obstacle);
             }
         }
     }

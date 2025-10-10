@@ -48,6 +48,7 @@ public class DamageOnCollsion : MonoBehaviour
                 }
             }
         }
+        /*
         else if(gameObject.tag == "Player")
         {
             if (other.gameObject != null && other.gameObject.tag == "Obstacle")
@@ -58,6 +59,7 @@ public class DamageOnCollsion : MonoBehaviour
                 }
             }
         }
+        */
 
     }
 }

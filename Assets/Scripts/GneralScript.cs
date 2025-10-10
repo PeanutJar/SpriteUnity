@@ -40,8 +40,9 @@ public class GneralScript : MonoBehaviour
     private float right;
     [SerializeField] private int isufochancepercentage;
     public int initialenemyspawnlimit;
-    public int destroyedmainenemies;
     private int spawnedmainenemies;
+    public List<GameObject> enemyspawnlist;
+    public bool haswon;
     public float borderTop;
     public float borderLeft;
     public float borderBottom;
@@ -77,9 +78,8 @@ public class GneralScript : MonoBehaviour
     }
     void Start()
     {
-        players = new List<ControllerPlayer>(); //needs to stay, otherwise previously created game objects do not get deleted (since they are no longer associated with this new list)
-        //could fix by createing a function that removes all existing unwated game objects, but I don't feel like doing that -> Edit: I....uhhh. I went ahead and did that...
-        //hearts = new List<Image>();
+        players = new List<ControllerPlayer>();
+        enemyspawnlist = new List<GameObject>();
         Reset();
 
         top = Camera.main.orthographicSize;
@@ -96,23 +96,15 @@ public class GneralScript : MonoBehaviour
             {
                 Destroy(gameobj.gameObject);
             }
-            /*
-            else if(gameobj.gameObject == gamecanvas.gameObject && hearts.Count > 0)
-            {
-                for(int i = 0; i < hearts.Count; i ++)
-                {
-                    Destroy(hearts[i].gameObject);
-                }
-            }
-            */
         }
         
         SpawnPlayerController();
         SpawnPlayer();
         timecount = 0;
         score = 0;
+        scoretext.text = "Score:";
         spawnedmainenemies = 0;
-        destroyedmainenemies = 0;
+        haswon = false;
     }
 
     // Update is called once per frame
@@ -142,7 +134,7 @@ public class GneralScript : MonoBehaviour
                     SpawnObstacle();
                 }
             }
-            if (destroyedmainenemies >= initialenemyspawnlimit)
+            if (haswon)
             {
                 GameEnd(true);
             }
@@ -219,21 +211,25 @@ public class GneralScript : MonoBehaviour
             {
                 obstacle = Instantiate(tester, new Vector3(left, top, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top left from character
                 obstacle.GetComponent<Obstacle>().setDirection(pos);
+                enemyspawnlist.Add(obstacle);
             }
             else if (r1 == 2)
             {
                 obstacle = Instantiate(tester, new Vector3(left, bottom, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom left from character
                 obstacle.GetComponent<Obstacle>().setDirection(pos);
+                enemyspawnlist.Add(obstacle);
             }
             else if (r1 == 3)
             {
                 obstacle = Instantiate(tester, new Vector3(right, top, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns top right from character
                 obstacle.GetComponent<Obstacle>().setDirection(pos);
+                enemyspawnlist.Add(obstacle);
             }
             else if (r1 == 4)
             {
                 obstacle = Instantiate(tester, new Vector3(right, bottom, 0), Quaternion.identity, gamelayer.transform) as GameObject; //spawns bottom right from character
                 obstacle.GetComponent<Obstacle>().setDirection(pos);
+                enemyspawnlist.Add(obstacle);
             }
             spawnedmainenemies += 1;
         }
@@ -252,5 +248,19 @@ public class GneralScript : MonoBehaviour
             wintext.gameObject.SetActive(true);
         }
         gamelayer.SetActive(false);
+    }
+
+    public bool GameEnd()
+    {
+        if (enemyspawnlist.Count == 1 && spawnedmainenemies >= initialenemyspawnlimit)
+        {
+            print("meep");
+            if (enemyspawnlist[0].gameObject.GetComponent<Obstacle>().isfinalenemy) //if there is a single enemy that does not have the condition "isfinalenemy" set to true, the player cannot win yet
+            {
+                print("meep2");
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -27,10 +27,9 @@ public class DeathDestroy : Death
                 {
                     gameObject.GetComponent<MeteorScript>().SpawnDeathRocks();
                 }
-                if(gameObject.GetComponent<Obstacle>().isfinalenemy)
-                {
-                    Camera.main.GetComponent<GneralScript>().destroyedmainenemies += 1;
-                }
+                Camera.main.GetComponent<GneralScript>().haswon = Camera.main.GetComponent<GneralScript>().GameEnd();
+                Camera.main.GetComponent<GneralScript>().enemyspawnlist.Remove(gameObject); //need to modify the function "game end" in general script so it can be called frm here
+                //to see if the player has one, else the objexts could be destroyed before the gneral script update is called to make the check
             }
         }
         else if(gameObject.tag == "Player")

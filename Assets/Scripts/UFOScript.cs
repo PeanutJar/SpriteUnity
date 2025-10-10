@@ -46,28 +46,21 @@ public class UFOScript : Obstacle
             }
         }
         GneralScript gencam = Camera.main.gameObject.GetComponent<GneralScript>();
-        //float halfHeight = Camera.main.orthographicSize;
-        //float halfWidth = halfHeight * Camera.main.aspect;
-        if (transform.position.y > gencam.borderTop || transform.position.y < gencam.borderBottom ||
-            transform.position.x > gencam.borderRight || transform.position.x < gencam.borderLeft) //can also incorporated a timer (for depending on how long projectile  has been off screen)
+        if (transform.position.y > gencam.borderTop)
         {
-            //gameObject.GetComponent<DeathDestroy>().Die();
-            if (moveDirection.y > 0)
-            {
-                transform.position = new Vector3(transform.position.x, gencam.borderBottom + 1, 0);
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x, gencam.borderTop - 1, 0);
-            }
-            if (moveDirection.x > 0)
-            {
-                transform.position = new Vector3(gencam.borderLeft + 1, transform.position.y, 0);
-            }
-            else
-            {
-                transform.position = new Vector3(gencam.borderRight - 1, transform.position.y, 0);
-            }
+            transform.position = new Vector3(transform.position.x, gencam.borderBottom + 1, 0);
+        }
+        else if (transform.position.y < gencam.borderBottom)
+        {
+            transform.position = new Vector3(transform.position.x, gencam.borderTop - 1, 0);
+        }
+        if (transform.position.x > gencam.borderRight)
+        {
+            transform.position = new Vector3(gencam.borderLeft + 1, transform.position.y, 0);
+        }
+        else if (transform.position.x < gencam.borderLeft)
+        {
+            transform.position = new Vector3(gencam.borderRight - 1, transform.position.y, 0);
         }
     }
 
