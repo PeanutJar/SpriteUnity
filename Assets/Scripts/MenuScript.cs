@@ -18,6 +18,7 @@ public class MenuScript : MonoBehaviour
     public void GameStart()
     {
         cam.GetComponent<GneralScript>().gamelayer.SetActive(true);
+        cam.GetComponent<AudioSource>().Play();
         //cam.GetComponent<GneralScript>().SpawnPlayerController();
         //cam.GetComponent<GneralScript>().SpawnPlayer();
         cam.GetComponent<GneralScript>().Reset();

@@ -73,6 +73,7 @@ public class GneralScript : MonoBehaviour
             gameoverlayer.SetActive(false);
             losetext.gameObject.SetActive(false);
             wintext.gameObject.SetActive(false);
+            GetComponent<AudioSource>().Stop();
             menulayer.SetActive(true);
         }
     }
@@ -119,6 +120,7 @@ public class GneralScript : MonoBehaviour
             gameoverlayer.SetActive(false);
             losetext.gameObject.SetActive(false);
             wintext.gameObject.SetActive(false);
+            GetComponent<AudioSource>().Stop();
             menulayer.SetActive(true);
         }
         if (!menulayer.activeSelf && !creditslayer.activeSelf && !gameoverlayer.activeSelf && gamelayer.activeSelf) //game only runs if in "game mode"
