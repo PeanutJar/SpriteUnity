@@ -19,6 +19,12 @@ public class GneralScript : MonoBehaviour
 
     [Header("Players")]
     public List<ControllerPlayer> players;
+    public List<GameObject> enemyspawnlist;
+    public int initialenemyspawnlimit;
+    private int spawnedmainenemies;
+    [SerializeField] private int isufochancepercentage;
+
+    [Header("Enemies")]
 
     [Header("Prefabs")]
     public GameObject playerpawnprefab;
@@ -34,15 +40,12 @@ public class GneralScript : MonoBehaviour
     public TextMeshProUGUI scoretext;
     public TextMeshProUGUI losetext;
     public TextMeshProUGUI wintext;
+    public bool haswon;
+    /// /////////////
     private float top;
     private float bottom;
     private float left;
     private float right;
-    [SerializeField] private int isufochancepercentage;
-    public int initialenemyspawnlimit;
-    private int spawnedmainenemies;
-    public List<GameObject> enemyspawnlist;
-    public bool haswon;
     public float borderTop;
     public float borderLeft;
     public float borderBottom;
@@ -55,7 +58,6 @@ public class GneralScript : MonoBehaviour
     public AudioClip projectilesound;
     public AudioClip backgroundmusic;
 
-    //[Header("GameData")]
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public void Awake()
@@ -89,7 +91,7 @@ public class GneralScript : MonoBehaviour
         left = -right;
     }
 
-    public void Reset()
+    public void Reset() //reset variables instead of reinstatiated gamemanager object
     {
         foreach(Transform gameobj in gamelayer.transform) //destoryed gameobjects in the gamelayer that aren't the canvas elements (UI)
         {
@@ -130,7 +132,7 @@ public class GneralScript : MonoBehaviour
             {
                 timecount += Time.deltaTime;
 
-                if (timecount > 2)
+                if (timecount > 2) //every 2 seconds, create an enemy/obstacle
                 {
                     timecount = 0;
                     SpawnObstacle();
@@ -148,7 +150,6 @@ public class GneralScript : MonoBehaviour
     {
         if (players[0].pawnobject != null)
         {
-            //print("meep2");
             Destroy(players[0].pawnobject.gameObject);
         }
         
@@ -171,7 +172,6 @@ public class GneralScript : MonoBehaviour
         {
             if (players[0].gameObject != null) //if there is already a controller
             {
-                //print("meep");
                 Destroy(players[0].gameObject);
                 GameObject _controller = Instantiate(playercontrollerprefab, new Vector3(0, 0, 0), Quaternion.identity, gamelayer.transform) as GameObject; //instantiated controller and as a child of gamelayer
                 ControllerPlayer newcontroller = _controller.GetComponent<ControllerPlayer>();
@@ -189,7 +189,7 @@ public class GneralScript : MonoBehaviour
 
     void SpawnObstacle()
     {
-        if (players[0].pawnobject != null) //if pawn object no longer exists
+        if (players[0].pawnobject != null) //if pawn object exists
         {
             Vector3 pos;
             System.Random random = new System.Random();
@@ -239,7 +239,6 @@ public class GneralScript : MonoBehaviour
 
     public void GameEnd(bool iswin)
     {
-        //if (players[0].gameObject.getComponent<ControllerPlayer>().getLives)
         gameoverlayer.SetActive(true);
         if (!iswin)
         {
@@ -252,14 +251,12 @@ public class GneralScript : MonoBehaviour
         gamelayer.SetActive(false);
     }
 
-    public bool GameEnd()
+    public bool GameEnd() //if player can win
     {
         if (enemyspawnlist.Count == 1 && spawnedmainenemies >= initialenemyspawnlimit)
         {
-            print("meep");
             if (enemyspawnlist[0].gameObject.GetComponent<Obstacle>().isfinalenemy) //if there is a single enemy that does not have the condition "isfinalenemy" set to true, the player cannot win yet
             {
-                print("meep2");
                 return true;
             }
         }

@@ -8,8 +8,8 @@ public class ControllerPlayer : Controller
 {
     public Pawn pawnobject;
     private Vector3 moveDirection = Vector3.up;
-    public int randomteleportXmax = 9;
-    public int randomteleportYmax = 4;
+    [SerializeField] private int randomteleportXmax = 9;
+    [SerializeField] private int randomteleportYmax = 4;
     [SerializeField] private Image healthbar;
     [SerializeField] private int lives;
     [SerializeField] private GameObject heartsobj;
@@ -20,7 +20,7 @@ public class ControllerPlayer : Controller
     {
         defaulthealthbarscale = healthbar.transform.localScale;
         hearts = new List<Image>();
-        heartsobj.transform.position = new Vector3(210, 32.5f, 0); // just to make sure (even though this is already set in preset could jstu get rid of this)
+        heartsobj.transform.position = new Vector3(210, 32.5f, 0); // just to make sure (even though this is already set in preset could just get rid of this)
         Image _heart;
         for(int i = 0; i < lives; i++)
         {

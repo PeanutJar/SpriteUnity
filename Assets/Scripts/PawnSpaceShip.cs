@@ -14,11 +14,7 @@ public class PawnSpaceShip : Pawn
     public float speedmultiplier = 1.5f;
     public float rotatespeed = 360f;
     private bool isboost;
-    //private Image healthbar;
-    //private Vector3 defaulthealthbarscale;
     private ControllerPlayer pawnparent;
-    //private int lives;
-    //private List<Image> hearts;
 
 
     [Header("AudioClips")]
@@ -40,10 +36,6 @@ public class PawnSpaceShip : Pawn
     public void IstantiatePawnPlayerConnection(ControllerPlayer parent)
     {
         pawnparent = parent;
-        //healthbar = parent.gethealthbar();
-        //defaulthealthbarscale = healthbar.transform.localScale;
-        //lives = parent.getLives();
-        //hearts = parent.hearts;
     }
 
     public override void Move(Vector3 movevector)
@@ -126,7 +118,7 @@ public class PawnSpaceShip : Pawn
         return impactsound;
     }
 
-    public bool IsOutOfLives()
+    public bool IsOutOfLives() //returns if out of lives, if not reduce lives then check again
     {
         if(pawnparent.getLives() <= 0)
         {
