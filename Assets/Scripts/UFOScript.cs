@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 using System;
 using System.Reflection;
 using System.Linq;
@@ -23,6 +22,7 @@ public class UFOScript : Obstacle
         this.gameObject.tag = "Obstacle";
         healthcomponent = GetComponent<Health>();
         defaulthealthbarscale = healthbar.transform.localScale;
+        initalposition = transform.position;
     }
 
     public override void setDirection(Vector3 pos)

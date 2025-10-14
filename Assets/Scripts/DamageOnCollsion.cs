@@ -48,18 +48,18 @@ public class DamageOnCollsion : MonoBehaviour
                 }
             }
         }
-        /*
+        
         else if(gameObject.tag == "Player")
         {
             if (other.gameObject != null && other.gameObject.tag == "Obstacle")
             {
-                if (other.gameObject.GetComponent<DeathDestroy>() != null)
+                if (other.gameObject.GetComponent<Obstacle>().initalposition != null)
                 {
-                    other.gameObject.GetComponent<DeathDestroy>().Die();
+                    other.gameObject.transform.position = other.gameObject.GetComponent<Obstacle>().initalposition;
                 }
             }
         }
-        */
+        
 
     }
 }
